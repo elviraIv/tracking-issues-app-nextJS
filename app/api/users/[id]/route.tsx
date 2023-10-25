@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { schema } from "../schema";
+import { schema } from "../../products/schema";
 
-
-export const get = (
+export const GET = async (
   request: NextRequest,
   { params }: { params: { id: number } }
 ) => {
@@ -23,12 +22,12 @@ export const PUT = async (
 ) => {
   const body = await request.json();
 
- const validation = schema.safeParse(body)
- if(!validation.success){
+  const validation = schema.safeParse(body);
+  if (!validation.success) {
     return NextResponse.json(validation.error.errors, {
-        status:400
-    })
- }
+      status: 400,
+    });
+  }
 
   if (params.id > 10) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
@@ -45,5 +44,5 @@ export const DELETE = (
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  return NextResponse.json({})
+  return NextResponse.json({});
 };

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { schema } from "./schema";
+import { schema } from "../products/schema";
 
 
 export const GET = (request: NextRequest) => {
